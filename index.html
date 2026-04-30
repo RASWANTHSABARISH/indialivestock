@@ -1,0 +1,2464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>India Livestock Show 2027 | Coimbatore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Barlow+Condensed:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <style>
+/* =====================================================
+   INDIA LIVESTOCK SHOW 2027 — WEBSITE STYLESHEET
+   Senior-grade, modular, semantic CSS
+   ===================================================== */
+
+/* === DESIGN TOKENS === */
+:root {
+  --green-deep: #1a4d2e;
+  --green-mid: #2d7a45;
+  --green-bright: #3ab563;
+  --green-pale: #e8f5ec;
+  --red-accent: #c0392b;
+  --gold: #d4a017;
+  --cream: #fdf8f0;
+  --ink: #0f1c14;
+  --ink-soft: #3d5240;
+  --white: #ffffff;
+  --grey-light: #f4f4f2;
+  --grey-mid: #9aab9e;
+
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-condensed: 'Barlow Condensed', sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --max-width: 1200px;
+  --container-padding: 3rem;
+
+  --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.10);
+  --shadow-float: 0 20px 60px rgba(0, 0, 0, 0.18);
+
+  --transition: 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* === RESET & BASE === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--white);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* === UTILITY === */
+.section-label {
+  font-family: var(--font-condensed);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 2px;
+  background: var(--green-mid);
+  flex-shrink: 0;
+}
+
+.section-label--light {
+  color: var(--green-bright);
+}
+
+.section-label--light::before {
+  background: var(--green-bright);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-condensed);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--transition);
+}
+
+.btn--primary {
+  background: var(--green-mid);
+  color: var(--white);
+  border-color: var(--green-mid);
+}
+
+.btn--primary:hover {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--white);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--green-deep);
+  border-color: var(--green-deep);
+}
+
+.btn--outline:hover {
+  background: var(--green-deep);
+  color: var(--white);
+}
+
+.btn--white {
+  background: var(--white);
+  color: var(--green-deep);
+  border-color: var(--white);
+}
+
+.btn--white:hover {
+  background: var(--cream);
+  transform: translateY(-2px);
+}
+
+.btn--ghost-white {
+  background: transparent;
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.btn--ghost-white:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===========================
+   NAV
+   =========================== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  transition: background 0.4s, box-shadow 0.4s;
+  padding: 0 2rem;
+}
+
+.nav.scrolled {
+  background: rgba(10, 30, 16, 0.97);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+}
+
+.nav__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav__logo-img {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+}
+
+.nav__links a {
+  font-family: var(--font-condensed);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  transition: color var(--transition);
+}
+
+.nav__links a:hover {
+  color: var(--green-bright);
+}
+
+.nav__cta {
+  background: var(--green-mid) !important;
+  color: var(--white) !important;
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-sm);
+}
+
+.nav__cta:hover {
+  background: var(--green-bright) !important;
+}
+
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav__burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* ===========================
+   HERO
+   =========================== */
+.hero {
+  min-height: 100vh;
+  background: #0b1e10;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 64px;
+}
+
+.hero__bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.hero__farm-strip {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 220px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero__content-wrapper {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  position: relative;
+  z-index: 5;
+  width: 100%;
+}
+
+.hero__content {
+  max-width: 800px;
+}
+
+.hero__eyebrow {
+  margin-bottom: 2rem;
+}
+
+.hero__badge {
+  display: inline-block;
+  font-family: var(--font-condensed);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  background: rgba(58, 181, 99, 0.1);
+  border: 1px solid rgba(58, 181, 99, 0.25);
+  padding: 0.4rem 1.2rem;
+  border-radius: 100px;
+}
+
+.hero__headline {
+  font-family: var(--font-display);
+  line-height: 0.95;
+  color: var(--white);
+  margin-bottom: 1.8rem;
+}
+
+.hero__headline--line1 {
+  display: block;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: rgba(255, 255, 255, 0.12);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.hero__headline--line2 {
+  display: block;
+  font-size: clamp(3.5rem, 8vw, 7.5rem);
+  color: var(--white);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-top: -0.05em;
+  text-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+}
+
+.hero__headline--line3 {
+  display: block;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: -0.05em;
+}
+
+.hero__headline--line3 em {
+  font-style: normal;
+  color: var(--green-bright);
+}
+
+.hero__sub {
+  font-family: var(--font-condensed);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 3rem;
+  border-left: 3px solid var(--green-bright);
+  padding-left: 1.2rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.hero__animal-silhouettes {
+  position: absolute;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__animal-silhouettes svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Visual Background Elements */
+.hero__visual {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 65%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero__image-fade {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hero__visual-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6;
+  filter: saturate(1.2) contrast(1.1);
+  mask-image: linear-gradient(to left, black 30%, transparent 90%);
+  -webkit-mask-image: linear-gradient(to left, black 30%, transparent 90%);
+}
+
+.hero__visual-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 75% 50%, transparent 0%, #0b1e10 90%);
+}
+
+.hero__scroll-hint {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-condensed);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  z-index: 10;
+}
+
+.hero__scroll-line {
+  width: 50px;
+  height: 2px;
+  background: rgba(58, 181, 99, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero__card-label {
+  font-family: var(--font-condensed);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+}
+
+.hero__card-val {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--ink);
+}
+
+@keyframes scrollLine {
+  0% { transform: translateY(-10px); opacity: 0; }
+  50% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(10px); opacity: 0; }
+}
+
+.hero__scroll-line::after {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 6px;
+  background: var(--green-bright);
+  border-radius: 2px;
+  animation: scrollLine 2s infinite;
+}
+
+section {
+  scroll-margin-top: 64px;
+}
+
+/* ===========================
+   TICKER
+   =========================== */
+.ticker {
+  background: var(--green-deep);
+  overflow: hidden;
+  padding: 0.85rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.ticker__inner {
+  display: flex;
+  gap: 2rem;
+  white-space: nowrap;
+  animation: ticker 28s linear infinite;
+  width: max-content;
+  font-family: var(--font-condensed);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ticker__dot {
+  color: var(--green-bright);
+}
+
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ===========================
+   ABOUT
+   =========================== */
+.about {
+  background: var(--cream);
+  padding: 8rem 0;
+}
+
+.about__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.about__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--ink);
+  margin-bottom: 2.5rem;
+}
+
+.about__img-stack {
+  position: relative;
+  height: 400px;
+}
+
+.about__img-card {
+  position: absolute;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-float);
+}
+
+.about__img-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about__img-card--1 {
+  width: 72%;
+  height: 320px;
+  bottom: 0;
+  left: 0;
+}
+
+.about__img-card--2 {
+  width: 52%;
+  height: 230px;
+  top: 0;
+  right: 0;
+  border: 4px solid var(--white);
+}
+
+.about__lead {
+  font-size: 1.12rem;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  line-height: 1.7;
+}
+
+.about__body {
+  font-size: 0.97rem;
+  color: var(--ink-soft);
+  margin-bottom: 1rem;
+  line-height: 1.75;
+}
+
+.about__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.about__tags span {
+  font-family: var(--font-condensed);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--green-pale);
+  color: var(--green-deep);
+  border: 1px solid rgba(45, 122, 69, 0.2);
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+}
+
+/* ===========================
+   STATS
+   =========================== */
+.stats {
+  background: var(--green-deep);
+  padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.stats__bg-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 18vw, 22rem);
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.03);
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.stats__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  position: relative;
+  z-index: 1;
+}
+
+.stats__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 4.5rem;
+  line-height: 1.05;
+}
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.stats__card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 2.2rem 1.8rem;
+  transition: var(--transition);
+}
+
+.stats__card:hover {
+  background: rgba(255, 255, 255, 0.09);
+  transform: translateY(-4px);
+  border-color: rgba(58, 181, 99, 0.3);
+}
+
+.stats__card--accent {
+  background: rgba(58, 181, 99, 0.1);
+  border-color: rgba(58, 181, 99, 0.2);
+}
+
+.stats__num {
+  font-family: var(--font-condensed);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stats__num span {
+  color: var(--green-bright);
+}
+
+.stats__label {
+  font-family: var(--font-condensed);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  margin-bottom: 0.6rem;
+}
+
+.stats__desc {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+}
+
+/* ===========================
+   PARTICIPATE
+   =========================== */
+.participate {
+  background: var(--white);
+  padding: 8rem 0;
+}
+
+.participate__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.participate__path {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  padding: 3.5rem 3rem;
+  transition: var(--transition);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.participate__path--exhibitor {
+  background: var(--green-deep);
+  color: var(--white);
+}
+
+.participate__path--visitor {
+  background: var(--green-pale);
+  color: var(--ink);
+}
+
+.participate__path:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-float);
+}
+
+.participate__bg-accent {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle at top right, rgba(58, 181, 99, 0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.participate__label {
+  font-family: var(--font-condensed);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  margin-bottom: 0.5rem;
+}
+
+.participate__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.participate__lead {
+  font-size: 1rem;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  max-width: 90%;
+}
+
+.participate__price,
+.participate__stats {
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+
+.participate__price {
+  font-family: var(--font-condensed);
+  font-size: 1.1rem;
+  color: var(--white);
+}
+
+.participate__price span {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--green-bright);
+}
+
+.participate__stats {
+  gap: 2rem;
+}
+
+.mini-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.mini-stat strong {
+  font-family: var(--font-condensed);
+  font-size: 2rem;
+  color: var(--green-deep);
+  line-height: 1;
+}
+
+.mini-stat span {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--green-mid);
+  font-weight: 700;
+}
+
+.participate__feature-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.8rem;
+  margin-bottom: 3rem;
+}
+
+.participate__feature-list li {
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.participate__feature-list li span {
+  color: var(--green-bright);
+  font-size: 1rem;
+}
+
+.participate__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.participate__note {
+  font-size: 0.75rem;
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.participate__path--visitor .participate__note {
+  color: var(--ink-soft);
+}
+
+/* ===========================
+   TIMELINE
+   =========================== */
+.timeline {
+  background-image: url('exhibition_bg.png');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  padding: 7rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.9);
+  z-index: 1;
+}
+
+.timeline__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  position: relative;
+  z-index: 2;
+}
+
+.timeline__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 3rem;
+}
+
+.timeline__track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+.timeline__track::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: rgba(45, 122, 69, 0.2);
+  z-index: 0;
+}
+
+.timeline__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.7rem;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline__date {
+  font-family: var(--font-condensed);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green-mid);
+}
+
+.timeline__dot {
+  width: 16px;
+  height: 16px;
+  background: var(--white);
+  border: 2px solid var(--green-mid);
+  border-radius: 50%;
+}
+
+.timeline__dot--main {
+  width: 24px;
+  height: 24px;
+  background: var(--green-mid);
+  border-color: var(--green-deep);
+  box-shadow: 0 0 0 5px rgba(45, 122, 69, 0.15);
+}
+
+.timeline__text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.timeline__text strong {
+  font-size: 0.95rem;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.timeline__text span {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.timeline__item--main .timeline__text strong {
+  color: var(--green-deep);
+  font-size: 1.05rem;
+}
+
+/* ===========================
+   MEDIA GALLERY
+   =========================== */
+.media {
+  background: var(--white);
+  padding: 8rem 0;
+}
+
+.media__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.media__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3.5rem;
+}
+
+.media__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1.05;
+}
+
+.media__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 300px);
+  gap: 1.5rem;
+}
+
+.media__cell {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--grey-light);
+}
+
+.media__cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.media__cell:hover img {
+  transform: scale(1.1);
+}
+
+.media__cell--v {
+  grid-row: span 2;
+}
+
+.media__cell--h {
+  grid-column: span 2;
+}
+
+.media__info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.media__cell:hover .media__info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.media__info span {
+  font-family: var(--font-condensed);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+}
+
+.media__info h4 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  margin-top: 0.3rem;
+}
+
+.media__view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-family: var(--font-condensed);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--green-mid);
+  transition: var(--transition);
+}
+
+.media__view-all:hover {
+  color: var(--green-bright);
+  letter-spacing: 0.15em;
+}
+
+.media__view-all::after {
+  content: '→';
+  font-size: 1.2rem;
+}
+
+/* ===========================
+   BROCHURE CTA
+   =========================== */
+.brochure {
+  background: linear-gradient(135deg, var(--green-deep) 0%, #0e3a1e 100%);
+  padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.brochure::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -15%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(58, 181, 99, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.brochure__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.brochure__left h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.brochure__left p {
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 2.5rem;
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+
+.brochure__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.brochure__card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+.brochure__timer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.timer-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-num {
+  font-family: var(--font-condensed);
+  font-size: 4rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+
+.timer-label {
+  font-family: var(--font-condensed);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green-bright);
+  margin-top: 0.5rem;
+}
+
+.brochure__card-month {
+  font-family: var(--font-condensed);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 1.2rem;
+}
+
+.brochure__card-venue {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.brochure__card-timing {
+  font-family: var(--font-condensed);
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1.5rem;
+}
+
+.brochure__animals {
+  font-size: 1.6rem;
+  letter-spacing: 0.2rem;
+}
+
+/* ===========================
+   PROMOTIONS
+   =========================== */
+.promos {
+  background: var(--cream);
+  padding: 8rem 0;
+}
+
+.promos__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.promos__heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 3rem;
+  line-height: 1.1;
+}
+
+.promos__grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+}
+
+.promos__item {
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-md);
+  padding: 1.8rem 1.2rem;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.promos__item:hover {
+  transform: translateY(-4px);
+  border-color: rgba(45, 122, 69, 0.3);
+  box-shadow: var(--shadow-card);
+}
+
+.promos__icon {
+  font-size: 2rem;
+  margin-bottom: 0.9rem;
+}
+
+.promos__text {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* ===========================
+   TESTIMONIALS
+   =========================== */
+.testimonials {
+  background: var(--white);
+  padding: 8rem 0;
+}
+
+.testimonials__container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.testimonials__heading {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  color: var(--ink);
+  margin-bottom: 4rem;
+}
+
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+.testimonials__card {
+  background: var(--grey-light);
+  border-radius: var(--radius-md);
+  padding: 2.2rem;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.testimonials__card:hover {
+  border-color: rgba(45, 122, 69, 0.2);
+  box-shadow: var(--shadow-card);
+}
+
+.testimonials__card--featured {
+  background: var(--green-deep);
+  transform: scale(1.02);
+}
+
+.testimonials__stars {
+  color: var(--gold);
+  font-size: 0.9rem;
+  letter-spacing: 0.1rem;
+  margin-bottom: 1rem;
+}
+
+.testimonials__card p {
+  font-size: 0.97rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+.testimonials__card--featured p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.testimonials__card--featured .testimonials__author strong {
+  color: var(--white);
+}
+
+.testimonials__card--featured .testimonials__author span {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+
+.testimonials__author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.testimonials__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-mid), var(--green-bright));
+  flex-shrink: 0;
+}
+
+.testimonials__author strong {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.testimonials__author span {
+  font-size: 0.8rem;
+  color: var(--grey-mid);
+}
+
+.credibility__strip {
+  background: var(--green-pale);
+  border: 1px solid rgba(45, 122, 69, 0.15);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2rem;
+}
+
+.credibility__item {
+  text-align: center;
+}
+
+.credibility__num {
+  font-family: var(--font-condensed);
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--green-deep);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.credibility__num sup {
+  font-size: 1.2rem;
+}
+
+.credibility__item div:last-child {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.credibility__divider {
+  width: 1px;
+  height: 60px;
+  background: rgba(45, 122, 69, 0.2);
+}
+
+/* ===========================
+   FOOTER
+   =========================== */
+.footer {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.footer__top {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem var(--container-padding) 2.5rem;
+  display: grid;
+  grid-template-columns: 1.8fr 1fr 1fr 1.6fr;
+  gap: 3rem;
+}
+
+.footer__logo {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.footer__tagline {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+.footer__socials {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.footer__socials a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+  transition: var(--transition);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.footer__socials a svg {
+  transition: transform 0.3s ease;
+}
+
+.footer__socials a:hover {
+  border-color: var(--green-bright);
+  color: var(--green-bright);
+  background: rgba(58, 181, 99, 0.05);
+}
+
+.footer__socials a:hover svg {
+  transform: scale(1.1);
+}
+
+.footer__links-col h4 {
+  font-family: var(--font-condensed);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1.2rem;
+}
+
+.footer__links-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.footer__links-col li,
+.footer__links-col a {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color var(--transition);
+}
+
+.footer__links-col a:hover {
+  color: var(--green-bright);
+}
+
+.footer__contact-col h4 {
+  font-family: var(--font-condensed);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1.2rem;
+}
+
+.footer__phone,
+.footer__email,
+.footer__web {
+  display: block;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.5rem;
+  transition: color var(--transition);
+}
+
+.footer__phone:hover,
+.footer__email:hover,
+.footer__web:hover {
+  color: var(--green-bright);
+}
+
+.footer__addr {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.4);
+  line-height: 1.7;
+  margin-top: 1rem;
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding: 2.5rem var(--container-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.35);
+  flex-wrap: wrap;
+  gap: 2rem;
+  letter-spacing: 0.03em;
+}
+
+.footer__dev-link {
+  color: var(--green-bright);
+  font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+.footer__dev-link:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ===========================
+   RESPONSIVE
+   =========================== */
+@media (max-width: 1024px) {
+  :root {
+    --container-padding: 2rem;
+  }
+  
+  .about__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stats__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .promos__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer__top {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .nav__links {
+    display: none;
+  }
+
+  .nav__burger {
+    display: flex;
+  }
+
+  .hero__content-wrapper {
+    text-align: center;
+  }
+
+  .hero__content {
+    max-width: 100%;
+    padding: 4rem 1rem 2rem;
+  }
+
+  .hero__visual {
+    width: 100%;
+    height: 60%;
+    top: auto;
+    bottom: 0;
+    opacity: 0.5;
+  }
+
+  .hero__visual-img {
+    mask-image: linear-gradient(to top, black 20%, transparent 90%);
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__sub {
+    border-left: none;
+    padding-left: 0;
+  }
+
+  .hero__animal-silhouettes {
+    bottom: 10px;
+    opacity: 0.3;
+  }
+
+  .about__container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about__img-stack {
+    height: 300px;
+  }
+
+  .stats__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .participate__container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .participate__path {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .participate__heading {
+    font-size: 2.2rem;
+  }
+
+  .participate__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .participate__note {
+    text-align: center;
+  }
+
+  .timeline__track {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .timeline__track::before {
+    display: none;
+  }
+
+  .timeline__item {
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .timeline__dot {
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+
+  .media__header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .media__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 0.8rem;
+  }
+
+  .media__cell {
+    height: 200px;
+  }
+
+  .media__cell--v,
+  .media__cell--h {
+    grid-column: span 2;
+  }
+
+  .media__info {
+    opacity: 1;
+    transform: translateY(0);
+    padding: 1rem;
+  }
+
+  .media__info h4 {
+    font-size: 1rem;
+  }
+
+  .brochure__container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .promos__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .testimonials__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .credibility__strip {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+
+  .credibility__divider {
+    width: 60px;
+    height: 1px;
+  }
+
+  .footer__top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-padding: 1.2rem;
+  }
+  
+  .stats__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .promos__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .media__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .media__cell--v,
+  .media__cell--h {
+    grid-column: auto;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+  }
+
+  .brochure__actions {
+    flex-direction: column;
+  }
+
+  .hero__scroll-hint {
+    display: none;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <img src="new_logo.png" alt="India Livestock Show 2027" class="nav__logo-img" />
+      </a>
+      <ul class="nav__links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#highlights">Highlights</a></li>
+        <li><a href="#participate">Participate</a></li>
+        <li><a href="#media">Gallery</a></li>
+        <li><a href="#contact" class="nav__cta">Register Now</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__bg-grid"></div>
+    <div class="hero__farm-strip"></div>
+
+    <div class="hero__content-wrapper">
+      <div class="hero__content">
+        <div class="hero__eyebrow">
+          <span class="hero__badge">South India's Premier Event</span>
+        </div>
+        <h1 class="hero__headline">
+          <span class="hero__headline--line1">India</span>
+          <span class="hero__headline--line2">Livestock</span>
+          <span class="hero__headline--line3">Show <em>2027</em></span>
+        </h1>
+        <p class="hero__sub">
+          28 · 29 · 30 January 2027 &nbsp;|&nbsp; CODISSIA, Coimbatore
+        </p>
+        <div class="hero__actions">
+          <a href="#participate" class="btn btn--primary">Exhibit With Us</a>
+          <a href="#about" class="btn btn--ghost">Explore the Show</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <div class="hero__image-fade">
+        <img src="hero_image.png" alt="Livestock Excellence" class="hero__visual-img" />
+      </div>
+      <div class="hero__visual-overlay"></div>
+    </div>
+
+    <div class="hero__animal-silhouettes" aria-hidden="true">
+      <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet">
+        <!-- Cow silhouette -->
+        <ellipse cx="140" cy="155" rx="70" ry="38" fill="rgba(255,255,255,0.07)" />
+        <ellipse cx="140" cy="128" rx="38" ry="28" fill="rgba(255,255,255,0.07)" />
+        <circle cx="115" cy="112" r="14" fill="rgba(255,255,255,0.07)" />
+        <rect x="100" y="188" width="10" height="18" rx="3" fill="rgba(255,255,255,0.07)" />
+        <rect x="120" y="188" width="10" height="18" rx="3" fill="rgba(255,255,255,0.07)" />
+        <rect x="150" y="188" width="10" height="18" rx="3" fill="rgba(255,255,255,0.07)" />
+        <rect x="170" y="188" width="10" height="18" rx="3" fill="rgba(255,255,255,0.07)" />
+        <!-- Goat silhouette -->
+        <ellipse cx="340" cy="158" rx="50" ry="28" fill="rgba(255,255,255,0.07)" />
+        <ellipse cx="330" cy="132" rx="26" ry="22" fill="rgba(255,255,255,0.07)" />
+        <circle cx="316" cy="118" r="12" fill="rgba(255,255,255,0.07)" />
+        <rect x="308" y="183" width="8" height="20" rx="3" fill="rgba(255,255,255,0.07)" />
+        <rect x="322" y="183" width="8" height="20" rx="3" fill="rgba(255,255,255,0.07)" />
+        <rect x="344" y="183" width="8" height="20" rx="3" fill="rgba(255,255,255,0.07)" />
+        <rect x="358" y="183" width="8" height="20" rx="3" fill="rgba(255,255,255,0.07)" />
+        <!-- Chicken silhouette -->
+        <ellipse cx="530" cy="162" rx="30" ry="20" fill="rgba(255,255,255,0.07)" />
+        <circle cx="516" cy="145" r="14" fill="rgba(255,255,255,0.07)" />
+        <polygon points="502,138 508,145 502,150" fill="rgba(255,255,255,0.07)" />
+        <rect x="518" y="182" width="7" height="14" rx="2" fill="rgba(255,255,255,0.07)" />
+        <rect x="532" y="182" width="7" height="14" rx="2" fill="rgba(255,255,255,0.07)" />
+        <!-- Horse -->
+        <ellipse cx="720" cy="152" rx="60" ry="30" fill="rgba(255,255,255,0.07)" />
+        <ellipse cx="710" cy="126" rx="28" ry="22" fill="rgba(255,255,255,0.07)" />
+        <circle cx="696" cy="110" r="13" fill="rgba(255,255,255,0.07)" />
+        <rect x="690" y="180" width="9" height="22" rx="3" fill="rgba(255,255,255,0.07)" />
+        <rect x="708" y="180" width="9" height="22" rx="3" fill="rgba(255,255,255,0.07)" />
+        <rect x="730" y="180" width="9" height="22" rx="3" fill="rgba(255,255,255,0.07)" />
+        <rect x="748" y="180" width="9" height="22" rx="3" fill="rgba(255,255,255,0.07)" />
+      </svg>
+    </div>
+
+    <div class="hero__scroll-hint">
+      <span>Scroll to explore</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ===== TICKER ===== -->
+  <div class="ticker">
+    <div class="ticker__inner">
+      <span>28–30 Jan 2027</span>
+      <span class="ticker__dot">◆</span>
+      <span>CODISSIA Trade Fair Complex</span>
+      <span class="ticker__dot">◆</span>
+      <span>Coimbatore, Tamil Nadu</span>
+      <span class="ticker__dot">◆</span>
+      <span>100+ Exhibitors</span>
+      <span class="ticker__dot">◆</span>
+      <span>5000+ Trade Visitors</span>
+      <span class="ticker__dot">◆</span>
+      <span>2400 Sq.m Exhibition Area</span>
+      <span class="ticker__dot">◆</span>
+      <span>28–30 Jan 2027</span>
+      <span class="ticker__dot">◆</span>
+      <span>CODISSIA Trade Fair Complex</span>
+      <span class="ticker__dot">◆</span>
+      <span>Coimbatore, Tamil Nadu</span>
+      <span class="ticker__dot">◆</span>
+      <span>100+ Exhibitors</span>
+      <span class="ticker__dot">◆</span>
+      <span>5000+ Trade Visitors</span>
+      <span class="ticker__dot">◆</span>
+      <span>2400 Sq.m Exhibition Area</span>
+      <span class="ticker__dot">◆</span>
+    </div>
+  </div>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="about__container">
+      <div class="about__left">
+        <div class="section-label">About The Show</div>
+        <h2 class="about__heading">Where South India's<br /> Livestock Future<br /> Takes Shape</h2>
+        <div class="about__img-stack">
+          <div class="about__img-card about__img-card--1">
+            <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=420&q=80" alt="Cattle farming" />
+          </div>
+          <div class="about__img-card about__img-card--2">
+            <img src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=280&q=80" alt="Goat farming" />
+          </div>
+        </div>
+      </div>
+      <div class="about__right">
+        <p class="about__lead">
+          The India Livestock Show is an annual event held at the Codissia Trade Fair Complex, Coimbatore, Tamil Nadu —
+          rapidly emerging as the largest and most influential livestock expo in South India.
+        </p>
+        <p class="about__body">
+          Our focus on innovation, sustainability, and regional market trends makes ILS the definitive platform for the
+          nation's livestock sector — a sector witnessing unprecedented growth driven by urbanisation and rising
+          disposable income. From advanced animal husbandry equipment to veterinary biotechnology, ILS bridges breeders,
+          farmers, exporters and policymakers under one roof.
+        </p>
+        <p class="about__body">
+          Organised by <strong>Prompt Trade Fairs India Pvt. Ltd.</strong> — pioneers in exhibitions with 1200+
+          successful events across pan India over a decade.
+        </p>
+        <div class="about__tags">
+          <span>Animal Husbandry</span>
+          <span>Feed Production</span>
+          <span>Veterinary Products</span>
+          <span>Ag-Tech</span>
+          <span>Biotechnology</span>
+          <span>Dairy Farming</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="stats" id="highlights">
+    <div class="stats__bg-text" aria-hidden="true">ILS2027</div>
+    <div class="stats__container">
+      <div class="section-label section-label--light">Key Highlights</div>
+      <h2 class="stats__heading">The Numbers That<br />Define ILS</h2>
+      <div class="stats__grid">
+        <div class="stats__card">
+          <div class="stats__num">100<span>+</span></div>
+          <div class="stats__label">Exhibitors</div>
+          <div class="stats__desc">From India & overseas bringing cutting-edge livestock solutions</div>
+        </div>
+        <div class="stats__card stats__card--accent">
+          <div class="stats__num">5000<span>+</span></div>
+          <div class="stats__label">Trade Visitors</div>
+          <div class="stats__desc">Breeders, farmers, exporters and industry professionals</div>
+        </div>
+        <div class="stats__card">
+          <div class="stats__num">2400</div>
+          <div class="stats__label">Sq.m Exhibition Area</div>
+          <div class="stats__desc">World-class trade fair infrastructure in the heart of Coimbatore</div>
+        </div>
+        <div class="stats__card stats__card--accent">
+          <div class="stats__num">500</div>
+          <div class="stats__label">Buyer-Seller Meetings</div>
+          <div class="stats__desc">Organised matchmaking sessions for maximum business outcomes</div>
+        </div>
+        <div class="stats__card">
+          <div class="stats__num">3</div>
+          <div class="stats__label">Days of Innovation</div>
+          <div class="stats__desc">Conferences, seminars and panel discussions on industry trends</div>
+        </div>
+        <div class="stats__card stats__card--accent">
+          <div class="stats__num">1200<span>+</span></div>
+          <div class="stats__label">Exhibitions by Prompt</div>
+          <div class="stats__desc">A decade of successfully organising trade fairs across India</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PARTICIPATE ===== -->
+  <section class="participate" id="participate">
+    <div class="participate__container">
+      <div class="participate__path participate__path--exhibitor">
+        <div class="participate__bg-accent"></div>
+        <div class="participate__content">
+          <div class="participate__label">Exhibit</div>
+          <h2 class="participate__heading">For Exhibitors</h2>
+          <p class="participate__lead">Scale your brand and connect with thousands of decision-makers in the heart of
+            South India.</p>
+
+          <div class="participate__price">
+            Starting at <span>₹9,000</span> / Sq.m
+          </div>
+
+          <ul class="participate__feature-list">
+            <li><span>✦</span> Livestock Feed & Nutrition</li>
+            <li><span>✦</span> Veterinary Med & Biotech</li>
+            <li><span>✦</span> Dairy & Farm Automation</li>
+            <li><span>✦</span> IT & Digital Solutions</li>
+          </ul>
+
+          <div class="participate__actions">
+            <a href="#contact" class="btn btn--primary">Book Your Space</a>
+            <span class="participate__note">Last few stalls remaining</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="participate__path participate__path--visitor">
+        <div class="participate__content">
+          <div class="participate__label">Attend</div>
+          <h2 class="participate__heading">For Visitors</h2>
+          <p class="participate__lead">Explore cutting-edge innovations, attend technical seminars, and network with
+            global experts.</p>
+
+          <div class="participate__stats">
+            <div class="mini-stat"><strong>100+</strong><span>Exhibitors</span></div>
+            <div class="mini-stat"><strong>5000+</strong><span>Peers</span></div>
+          </div>
+
+          <ul class="participate__feature-list">
+            <li><span>✦</span> Farmers & Farm Owners</li>
+            <li><span>✦</span> Ag-Entrepreneurs & Investors</li>
+            <li><span>✦</span> Govt. & R&D Authorities</li>
+            <li><span>✦</span> Importers & Exporters</li>
+          </ul>
+
+          <div class="participate__actions">
+            <a href="#contact" class="btn btn--outline">Register to Visit</a>
+            <span class="participate__note">Entry is strictly by registration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TIMELINE ===== -->
+  <section class="timeline">
+    <div class="timeline__container">
+      <div class="section-label">Event Schedule</div>
+      <h2 class="timeline__heading">Mark Your Calendar</h2>
+      <div class="timeline__track">
+        <div class="timeline__item">
+          <div class="timeline__date">Jan 26</div>
+          <div class="timeline__dot"></div>
+          <div class="timeline__text">
+            <strong>Raw Space Occupancy</strong>
+            <span>10:00 AM onwards</span>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__date">Jan 27</div>
+          <div class="timeline__dot"></div>
+          <div class="timeline__text">
+            <strong>Stall Occupancy</strong>
+            <span>10:00 AM onwards</span>
+          </div>
+        </div>
+        <div class="timeline__item timeline__item--main">
+          <div class="timeline__date">Jan 28–30</div>
+          <div class="timeline__dot timeline__dot--main"></div>
+          <div class="timeline__text">
+            <strong>Exhibition Days</strong>
+            <span>10:00 AM – 6:30 PM</span>
+          </div>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__date">Jan 30</div>
+          <div class="timeline__dot"></div>
+          <div class="timeline__text">
+            <strong>Stall Vacation</strong>
+            <span>9:00 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MEDIA ===== -->
+  <section class="media" id="media">
+    <div class="media__container">
+      <div class="media__header">
+        <div class="media__title-group">
+          <div class="section-label">Gallery Preview</div>
+          <h2 class="media__heading">The World of ILS</h2>
+        </div>
+        <a href="#" class="media__view-all">View All Moments</a>
+      </div>
+
+      <div class="media__grid">
+        <div class="media__cell media__cell--v">
+          <img src="https://images.unsplash.com/photo-1548550023-2bdb3c5beed7?w=700&q=80"
+            alt="Cattle at livestock show" />
+          <div class="media__info">
+            <span>Showcase</span>
+            <h4>Livestock Displays</h4>
+          </div>
+        </div>
+        <div class="media__cell">
+          <img src="https://images.unsplash.com/photo-1516467508483-a7212febe31a?w=400&q=80" alt="Poultry" />
+          <div class="media__info">
+            <span>Sectors</span>
+            <h4>Poultry Zone</h4>
+          </div>
+        </div>
+        <div class="media__cell media__cell--h">
+          <img src="https://images.unsplash.com/photo-1465379944081-7f47de8d74ac?w=700&q=80" alt="Trade show floor" />
+          <div class="media__info">
+            <span>Business</span>
+            <h4>Trade Floor Action</h4>
+          </div>
+        </div>
+        <div class="media__cell">
+          <img src="https://images.unsplash.com/photo-1596524430615-b46475ddff6e?w=400&q=80" alt="Goats" />
+          <div class="media__info">
+            <span>Breeding</span>
+            <h4>Goat Sector</h4>
+          </div>
+        </div>
+        <div class="media__cell">
+          <img src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?w=400&q=80" alt="Farm machinery" />
+          <div class="media__info">
+            <span>Tech</span>
+            <h4>Equipment Zone</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BROCHURE CTA ===== -->
+  <section class="brochure">
+    <div class="brochure__container">
+      <div class="brochure__left">
+        <div class="section-label section-label--light">Don't Miss Out</div>
+        <h2>Be Part of South India's<br />Most Dynamic<br />Livestock Platform</h2>
+        <p>Don't miss your chance to be part of the Top Brands Pavilion and make your mark on South India's dynamic
+          market. Stall enquiries are now open.</p>
+        <div class="brochure__actions">
+          <a href="#contact" class="btn btn--white">Book Stall Now</a>
+          <a href="#" class="btn btn--ghost-white">Download Brochure</a>
+        </div>
+      </div>
+      <div class="brochure__right" aria-hidden="true">
+        <div class="brochure__card">
+          <div class="brochure__timer" id="countdown">
+            <div class="timer-item">
+              <span class="timer-num" id="days">000</span>
+              <span class="timer-label">Days Left</span>
+            </div>
+          </div>
+          <div class="brochure__card-month">28 · 29 · 30 Jan 2027</div>
+          <div class="brochure__card-venue">CODISSIA Trade Fair<br />Complex, Coimbatore</div>
+          <div class="brochure__animals" aria-hidden="true">🐄 🐐 🐑 🐖 🦆 🐴</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROMOTIONS ===== -->
+  <section class="promos">
+    <div class="promos__container">
+      <div class="section-label">Outreach</div>
+      <h2 class="promos__heading">Massive Promotional<br />Campaign</h2>
+      <div class="promos__grid">
+        <div class="promos__item">
+          <div class="promos__icon">📰</div>
+          <div class="promos__text">Leading English & Tamil News Dailies</div>
+        </div>
+        <div class="promos__item">
+          <div class="promos__icon">📺</div>
+          <div class="promos__text">Leading Television Channels</div>
+        </div>
+        <div class="promos__item">
+          <div class="promos__icon">✉️</div>
+          <div class="promos__text">Personal Invitations, SMS & E-mails</div>
+        </div>
+        <div class="promos__item">
+          <div class="promos__icon">📍</div>
+          <div class="promos__text">Outdoor Advertising & Pole Signs</div>
+        </div>
+        <div class="promos__item">
+          <div class="promos__icon">📱</div>
+          <div class="promos__text">Google Ads, Facebook, Twitter, YouTube & WhatsApp</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="testimonials">
+    <div class="testimonials__container">
+      <div class="section-label">Credibility</div>
+      <h2 class="testimonials__heading">Trusted By Industry Leaders</h2>
+      <div class="testimonials__grid">
+        <div class="testimonials__card">
+          <div class="testimonials__stars">★★★★★</div>
+          <p>"India Livestock Show is the single best platform to launch new products in the South Indian market. The
+            buyer quality and footfall is unmatched."</p>
+          <div class="testimonials__author">
+            <div class="testimonials__avatar"></div>
+            <div>
+              <strong>Director, Animal Nutrition Company</strong>
+              <span>Hyderabad</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonials__card testimonials__card--featured">
+          <div class="testimonials__stars">★★★★★</div>
+          <p>"The organised buyer-seller meetings are what set ILS apart. We signed three major distribution deals in a
+            single afternoon. We'll be back every year."</p>
+          <div class="testimonials__author">
+            <div class="testimonials__avatar"></div>
+            <div>
+              <strong>MD, Veterinary Equipment Firm</strong>
+              <span>Chennai</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonials__card">
+          <div class="testimonials__stars">★★★★★</div>
+          <p>"As a first-time exhibitor we were blown away by the organisation and the quality of visitors. ILS is the
+            go-to show for anyone serious about livestock."</p>
+          <div class="testimonials__author">
+            <div class="testimonials__avatar"></div>
+            <div>
+              <strong>CEO, Dairy Technology Startup</strong>
+              <span>Coimbatore</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="credibility__strip">
+        <div class="credibility__item">
+          <div class="credibility__num">1200<sup>+</sup></div>
+          <div>Successful Exhibitions by Prompt</div>
+        </div>
+        <div class="credibility__divider"></div>
+        <div class="credibility__item">
+          <div class="credibility__num">10<sup>+</sup></div>
+          <div>Years of Exhibition Excellence</div>
+        </div>
+        <div class="credibility__divider"></div>
+        <div class="credibility__item">
+          <div class="credibility__num">Pan</div>
+          <div>India Reach Across All States</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT / FOOTER ===== -->
+  <footer class="footer" id="contact">
+    <div class="footer__top">
+      <div class="footer__logo-col">
+        <img src="new_logo.png" alt="India Livestock Show 2027" class="footer__logo" />
+        <p class="footer__tagline">South India's Premier Livestock Industry Event</p>
+        <div class="footer__socials">
+          <a href="#" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path
+                d="M14 13.5h2.5l1-4H14v-2c0-1.03.28-1.75 1.75-1.75H17V2.14c-.32-.04-1.45-.14-2.75-.14C11.56 2 9.5 3.65 9.5 6.75v2.75h-3.5v4h3.5V22h4.5v-8.5z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.377.505 9.377.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.981 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__links-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About ILS</a></li>
+          <li><a href="#highlights">Key Highlights</a></li>
+          <li><a href="#participate">Exhibitors</a></li>
+          <li><a href="#participate">Visitors</a></li>
+          <li><a href="#media">Gallery</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__links-col">
+        <h4>Event Details</h4>
+        <ul>
+          <li>28–30 January 2027</li>
+          <li>10:00 AM – 6:30 PM</li>
+          <li>CODISSIA Trade Fair Complex</li>
+          <li>Coimbatore, Tamil Nadu, India</li>
+          <li>₹9,000/- per Sq.m</li>
+        </ul>
+      </div>
+
+      <div class="footer__contact-col">
+        <h4>Stall Enquiries</h4>
+        <a href="tel:+919391391162" class="footer__phone">+91 93913 91162</a>
+        <a href="tel:+919566187502" class="footer__phone">+91 95661 87502</a>
+        <a href="mailto:info@prompttradefairs.com" class="footer__email">info@prompttradefairs.com</a>
+        <a href="https://www.indialivestockshow.com" target="_blank" class="footer__web">www.indialivestockshow.com</a>
+        <p class="footer__addr">Prompt Tower, Plot No: 324, Ram Nagar South Extn 12th Street, Off Radial Road,
+          Pallikaranai, Chennai – 600 100</p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© 2027 India Livestock Show · Organised by Prompt Trade Fairs India Pvt. Ltd. · All Rights Reserved</p>
+      <p>Developed by <a href="https://oceansoftwares.com/" target="_blank" class="footer__dev-link">Ocean Softwares</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+/* India Livestock Show 2027 — Scroll & Interaction JS */
+
+// === NAV SCROLL EFFECT ===
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+});
+
+// === REVEAL ON SCROLL (Intersection Observer) ===
+const revealEls = document.querySelectorAll(
+  '.stats__card, .participate__card, .testimonials__card, .media__cell, .promos__item, .about__img-card, .timeline__item, .credibility__item'
+);
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = entry.target.style.transform.replace('translateY(24px)', 'translateY(0)') || '';
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+revealEls.forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = `opacity 0.55s ease ${i * 0.05}s, transform 0.55s ease ${i * 0.05}s`;
+  observer.observe(el);
+});
+
+// === SMOOTH ANCHOR SCROLL ===
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// === COUNTDOWN TIMER ===
+function updateCountdown() {
+  const targetDate = new Date('January 28, 2027 10:00:00').getTime();
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  if (diff > 0) {
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const daysEl = document.getElementById('days');
+    if (daysEl) {
+      daysEl.innerText = days.toString().padStart(3, '0');
+    }
+  }
+}
+
+// Update every 24 hours (since we only show days)
+updateCountdown();
+setInterval(updateCountdown, 1000 * 60 * 60 * 24);
+
+// === MOBILE BURGER MENU ===
+const burger = document.querySelector('.nav__burger');
+const navLinks = document.querySelector('.nav__links');
+if (burger && navLinks) {
+  burger.addEventListener('click', () => {
+    const open = navLinks.classList.contains('mobile-open');
+    if (open) {
+      navLinks.classList.remove('mobile-open');
+      navLinks.style.display = 'none';
+    } else {
+      navLinks.classList.add('mobile-open');
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '64px';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'rgba(10,30,16,0.98)';
+      navLinks.style.padding = '1.5rem 2rem';
+      navLinks.style.gap = '1.2rem';
+      navLinks.style.zIndex = '99';
+    }
+  });
+}
+  </script>
+</body>
+
+</html>
