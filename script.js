@@ -62,27 +62,209 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000 * 60 * 60 * 24);
 
-// === MOBILE BURGER MENU ===
+// === SUCCESS TOAST INJECTION ===
+const toastHTML = `
+  <div class="success-toast" id="successToast">
+    <div class="success-toast__icon">✓</div>
+    <div class="success-toast__content">
+      <h5>Thank You!</h5>
+      <p>Your message has been received. We'll contact you shortly.</p>
+    </div>
+  </div>
+`;
+document.body.insertAdjacentHTML('beforeend', toastHTML);
+
+function showSuccessToast() {
+  const toast = document.getElementById('successToast');
+  if (toast) {
+    toast.classList.add('active');
+    setTimeout(() => {
+      toast.classList.remove('active');
+    }, 4000);
+  }
+}
+
+// === MODAL LOGIC ===
+function openModal(e) {
+  if (e) e.preventDefault();
+  const modal = document.getElementById('contactModal');
+  if (modal) {
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeModal() {
+  const modal = document.getElementById('contactModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+// === FORM VALIDATION ===
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validateMobile(mobile) {
+  return /^[0-9]{10}$/.test(mobile);
+}
+
+function submitForm(e) {
+  e.preventDefault();
+  let isValid = true;
+  const fields = ['name', 'mobile', 'email', 'company', 'message'];
+  const form = document.getElementById('enquiryForm');
+  
+  fields.forEach(field => {
+    const input = document.getElementById(field);
+    const error = document.getElementById(field + 'Error');
+    if (!input) return;
+
+    const value = input.value.trim();
+    let fieldValid = true;
+    let errorMessage = "This field is required.";
+
+    if (!value) {
+      fieldValid = false;
+    } else if (field === 'email' && !validateEmail(value)) {
+      fieldValid = false;
+      errorMessage = "Please enter a valid email address.";
+    } else if (field === 'mobile' && !validateMobile(value.replace(/\s/g, ''))) {
+      fieldValid = false;
+      errorMessage = "Please enter a valid 10-digit mobile number.";
+    }
+
+    if (!fieldValid) {
+      input.classList.add('error');
+      if (error) {
+        error.textContent = errorMessage;
+        error.style.display = 'block';
+      }
+      isValid = false;
+    } else {
+      input.classList.remove('error');
+      if (error) error.style.display = 'none';
+    }
+  });
+
+  if (isValid) {
+    showSuccessToast();
+    closeModal();
+    if (form) form.reset();
+  }
+}
+
+// Shared burger menu and scroll logic (already in script.js but ensured here)
 const burger = document.querySelector('.nav__burger');
 const navLinks = document.querySelector('.nav__links');
 if (burger && navLinks) {
   burger.addEventListener('click', () => {
-    const open = navLinks.classList.contains('mobile-open');
-    if (open) {
-      navLinks.classList.remove('mobile-open');
-      navLinks.style.display = 'none';
-    } else {
-      navLinks.classList.add('mobile-open');
-      navLinks.style.display = 'flex';
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.position = 'absolute';
-      navLinks.style.top = '64px';
-      navLinks.style.left = '0';
-      navLinks.style.right = '0';
-      navLinks.style.background = 'rgba(10,30,16,0.98)';
-      navLinks.style.padding = '1.5rem 2rem';
-      navLinks.style.gap = '1.2rem';
-      navLinks.style.zIndex = '99';
+    burger.classList.toggle('active');
+    navLinks.classList.toggle('mobile-open');
+    
+    // Explicitly handle display for mobile menu if needed
+    if (window.innerWidth <= 768) {
+      navLinks.style.display = navLinks.classList.contains('mobile-open') ? 'flex' : 'none';
     }
   });
+}
+
+// Close mobile menu when a link is clicked
+document.querySelectorAll('.nav__links a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (navLinks.classList.contains('mobile-open')) {
+      navLinks.classList.remove('mobile-open');
+      burger.classList.remove('active');
+      if (window.innerWidth <= 768) navLinks.style.display = 'none';
+    }
+  });
+}
+);
+
+// Dropdown handling for mobile
+document.querySelectorAll('.nav__item-link').forEach(link => {
+  link.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768) {
+      e.preventDefault();
+      const parent = link.parentElement;
+      parent.classList.toggle('open');
+      const dropdown = parent.querySelector('.nav__dropdown');
+      if (dropdown) {
+        dropdown.style.display = parent.classList.contains('open') ? 'flex' : 'none';
+      }
+    }
+  });
+});
+
+// === MEDIA GALLERY LOGIC ===
+
+// Video Hover Play
+const videoItems = document.querySelectorAll('.video-item');
+videoItems.forEach(item => {
+  const video = item.querySelector('video');
+  if (video) {
+    item.addEventListener('mouseenter', () => video.play());
+    item.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+    
+    // Click to open modal
+    item.addEventListener('click', () => {
+      const videoSrc = item.getAttribute('data-video');
+      openVideoModal(videoSrc);
+    });
+  }
+});
+
+function openVideoModal(src) {
+  const modal = document.getElementById('videoModal');
+  const modalVideo = document.getElementById('modalVideo');
+  if (modal && modalVideo) {
+    modalVideo.src = src;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeVideoModal() {
+  const modal = document.getElementById('videoModal');
+  const modalVideo = document.getElementById('modalVideo');
+  if (modal && modalVideo) {
+    modal.classList.remove('active');
+    modalVideo.pause();
+    modalVideo.src = "";
+    document.body.style.overflow = '';
+  }
+}
+
+// Photo Gallery Modal
+const photoItems = document.querySelectorAll('.photo-item');
+photoItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const img = item.querySelector('img');
+    if (img) {
+      openPhotoModal(img.src);
+    }
+  });
+});
+
+function openPhotoModal(src) {
+  const modal = document.getElementById('photoModal');
+  const modalPhoto = document.getElementById('modalPhoto');
+  if (modal && modalPhoto) {
+    modalPhoto.src = src;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closePhotoModal() {
+  const modal = document.getElementById('photoModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
 }

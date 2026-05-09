@@ -104,7 +104,6 @@
                 <div style="display: flex; flex-direction: column; gap: 0.6rem;">
                   <a href="mailto:project2@prompttradefairs.com" style="font-weight: 500; font-size: 1.05rem; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--green-pale); width: fit-content;">project2@prompttradefairs.com</a>
                   <a href="mailto:prompttradefairs@gmail.com" style="font-weight: 500; font-size: 1.05rem; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--green-pale); width: fit-content;">prompttradefairs@gmail.com</a>
-                  <a href="https://www.indialivestockshow.com" target="_blank" style="font-weight: 700; font-size: 1.05rem; color: var(--green-deep); margin-top: 0.5rem; text-decoration: none;">www.indialivestockshow.com</a>
                 </div>
               </div>
             </div>
@@ -133,6 +132,12 @@
                 </div>
 
                 <div class="modal__group">
+                  <label class="modal__label" for="c_company">Company Name</label>
+                  <input type="text" id="c_company" name="company" placeholder="Enter your company name">
+                  <span class="modal__error" id="c_companyError">This field is required.</span>
+                </div>
+
+                <div class="modal__group">
                   <label class="modal__label" for="c_message">Message</label>
                   <textarea id="c_message" name="message" placeholder="How can we help you?" rows="5"></textarea>
                   <span class="modal__error" id="c_messageError">This field is required.</span>
@@ -150,31 +155,6 @@
 
 
   </section>
-
-  <script>
-    function submitPageForm(e) {
-      e.preventDefault();
-      let isValid = true;
-      const fields = ['c_name', 'c_mobile', 'c_email', 'c_company', 'c_message'];
-      fields.forEach(field => {
-        const input = document.getElementById(field);
-        const error = document.getElementById(field + 'Error');
-        if (!input.value.trim()) {
-          input.classList.add('error');
-          error.style.display = 'block';
-          isValid = false;
-        } else {
-          input.classList.remove('error');
-          error.style.display = 'none';
-        }
-      });
-      if (isValid) {
-        alert('Thank you for contacting us! We will get back to you soon.');
-        document.getElementById('pageContactForm').reset();
-      }
-    }
-  </script>
-
 
 
   <!-- ===== CONTACT / FOOTER ===== -->
@@ -248,88 +228,46 @@
     </div>
   </footer>
 
+  <script src="script.js"></script>
   <script>
-    /* India Livestock Show 2027 — Scroll & Interaction JS */
-    const nav = document.getElementById('nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 60) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
-
-    const burger = document.querySelector('.nav__burger');
-    const navLinks = document.querySelector('.nav__links');
-    if (burger && navLinks) {
-      burger.addEventListener('click', () => {
-        burger.classList.toggle('active');
-        navLinks.classList.toggle('mobile-open');
-        
-        if (navLinks.classList.contains('mobile-open')) {
-          navLinks.style.display = 'flex';
-          navLinks.style.flexDirection = 'column';
-          navLinks.style.position = 'absolute';
-          navLinks.style.top = '64px';
-          navLinks.style.left = '0';
-          navLinks.style.right = '0';
-          navLinks.style.background = 'rgba(10,30,16,0.98)';
-          navLinks.style.padding = '1.5rem 2rem';
-          navLinks.style.gap = '1.2rem';
-          navLinks.style.zIndex = '99';
-          navLinks.style.maxHeight = 'calc(100vh - 64px)';
-          navLinks.style.overflowY = 'auto';
-        } else {
-          navLinks.style.display = 'none';
-        }
-      });
-    }
-
-    document.querySelectorAll('.nav__item-link').forEach(link => {
-      link.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768) {
-          e.preventDefault();
-          const parent = link.parentElement;
-          parent.classList.toggle('open');
-          const dropdown = parent.querySelector('.nav__dropdown');
-          if (dropdown) {
-            dropdown.style.display = parent.classList.contains('open') ? 'flex' : 'none';
-          }
-        }
-      });
-    });
-
-    function openModal(e) {
-      if (e) e.preventDefault();
-      document.getElementById('contactModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      document.getElementById('contactModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    function submitForm(e) {
+    function submitPageForm(e) {
       e.preventDefault();
       let isValid = true;
-      const fields = ['name', 'mobile', 'email', 'company', 'message'];
+      const fields = ['c_name', 'c_mobile', 'c_email', 'c_company', 'c_message'];
       fields.forEach(field => {
         const input = document.getElementById(field);
         const error = document.getElementById(field + 'Error');
-        if (!input.value.trim()) {
+        if (!input) return;
+        
+        const value = input.value.trim();
+        let fieldValid = true;
+        let errorMessage = "This field is required.";
+
+        if (!value) {
+          fieldValid = false;
+        } else if (field === 'c_email' && !validateEmail(value)) {
+          fieldValid = false;
+          errorMessage = "Please enter a valid email address.";
+        } else if (field === 'c_mobile' && !validateMobile(value.replace(/\s/g, ''))) {
+          fieldValid = false;
+          errorMessage = "Please enter a valid 10-digit mobile number.";
+        }
+
+        if (!fieldValid) {
           input.classList.add('error');
-          error.style.display = 'block';
+          if (error) {
+            error.textContent = errorMessage;
+            error.style.display = 'block';
+          }
           isValid = false;
         } else {
           input.classList.remove('error');
-          error.style.display = 'none';
+          if (error) error.style.display = 'none';
         }
       });
       if (isValid) {
-        alert('Thank you for registering! We will get back to you soon.');
-        closeModal();
-        document.getElementById('enquiryForm').reset();
+        showSuccessToast();
+        document.getElementById('pageContactForm').reset();
       }
     }
   </script>
